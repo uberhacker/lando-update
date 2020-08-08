@@ -1,0 +1,13 @@
+#!/bin/bash
+cd ~/lando
+git checkout .
+git checkout master
+git fetch --all
+git pull origin master
+if test $1; then
+  git checkout $1
+else
+  git checkout $(git describe --abbrev=0)
+fi
+rm -rf node_modules/
+yarn
