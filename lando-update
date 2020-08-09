@@ -2,9 +2,21 @@
 cd ~/lando
 git checkout .
 git checkout master
-git fetch --all
 git pull origin master
+git fetch --tags
 if test $1; then
+  valid=
+  tags=$(git tag -l | xargs)
+  for t in $tags; do
+    if [ "x${t}x" == "x${1}x" ]; then
+      valid=1
+      break
+    fi
+  done
+  if ! test $valid; then
+    echo 'Invalid tag.'
+    exit 1
+  fi
   git checkout $1
 else
   git checkout $(git describe --abbrev=0)
