@@ -1,8 +1,8 @@
 #!/bin/bash
-cd ~/lando
+cd ~/lando-cli
 git checkout .
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 git fetch --tags
 if test $1; then
   valid=
