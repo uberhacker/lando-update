@@ -19,7 +19,7 @@ if test $1; then
   fi
   git checkout $1
 else
-  git checkout $(git describe --abbrev=0)
+  git checkout $(git tag -l | grep ^v | sort -Vr | head -1)
 fi
 rm -rf node_modules/
 yarn
